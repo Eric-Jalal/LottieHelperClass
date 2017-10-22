@@ -12,6 +12,21 @@ public class AnimController {
 
     private static LottieAnimationView animationView;
 
+    public void startAnim(String jsonAsset, View view, int idRes, boolean loop, float speed, final OnLongClickCallBack onLongClickCallBack){
+        animationView = view.findViewById(idRes);
+        animationView.setVisibility(View.VISIBLE);
+        animationView.setAnimation(jsonAsset);
+        animationView.playAnimation();
+        animationView.loop(loop);
+        animationView.setSpeed(speed);
+        animationView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return onLongClickCallBack.onLongPressListener();
+            }
+        });
+    }
+
     public void startAnim(String jsonAsset, View view, int idRes, boolean loop, float speed, final OnClickCallBack onClickCallBack){
         animationView = view.findViewById(idRes);
         animationView.setVisibility(View.VISIBLE);
